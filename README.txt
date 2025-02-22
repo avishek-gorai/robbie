@@ -1,1 +1,0 @@
-Keyboard exercise of Chapter 6(List Data Structures) of the book "Common LISP: A Gentle Introduction to Symbolic Computation" by David S. Touretzky.  I may develop this, like adding more features, documentation to the functions or comments, etc.

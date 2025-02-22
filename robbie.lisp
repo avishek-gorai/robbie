@@ -1,10 +1,28 @@
-(defvar rooms "Map of the rooms.")
+;;; robbie.lisp -- Main source program.
+;;; Copyright (C) 2025 Avishek Gorai <avishekgorai@myyahoo.com>
+
+;;; This program is free software: you can redistribute it and/or modify
+;;; it under the terms of the GNU General Public License as published by
+;;; the Free Software Foundation, either version 3 of the License, or
+;;; (at your option) any later version.
+
+;;; This program is distributed in the hope that it will be useful,
+;;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;;; GNU General Public License for more details.
+
+;;; You should have received a copy of the GNU General Public License
+;;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+(in-package robbie)
+
+(defvar *rooms* "Map of the rooms.")
 (defvar location "Current location of Robbie.")
 (defvar upstairs-room "List of rooms that are upstairs.")
 (defvar stairs "List of stairs.")
 
 ;;; Table defining rooms
-(setf rooms (quote
+(setf *rooms* (quote
              ((living-room        (north front-stairs)
                                   (south dining-room)
                                   (east kitchen))
@@ -42,7 +60,7 @@
 
 (defun choices (room)
   "Returns the table of permissible directions Robbie may take."
-  (rest (assoc room rooms)))
+  (rest (assoc room *rooms*)))
 
 (defun look (direction room)
   "Returns where Robbie would end up if he moved in that DIRECTION from that ROOM."
