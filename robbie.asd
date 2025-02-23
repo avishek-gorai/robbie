@@ -16,7 +16,7 @@
 
 
 
-(asdf:defsystem robbie
+(asdf:defsystem #:robbie
   :description "Routines for moving Robbie, the robot, around in a house."
   :author "Avishek Gorai <avishekgorai@myyahoo.com>"
   :license "GNU General Public License version 3 or later"
