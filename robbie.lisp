@@ -14,15 +14,10 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-(in-package #:robbie)
+(in-package robbie)
 
-(defvar *rooms* "Map of the rooms.")
-(defvar location "Current location of Robbie.")
-(defvar upstairs-room "List of rooms that are upstairs.")
-(defvar stairs "List of stairs.")
 
-;;; Table defining rooms
-(setf *rooms* (quote
+(defvar *rooms* (quote
              ((living-room        (north front-stairs)
                                   (south dining-room)
                                   (east kitchen))
@@ -50,37 +45,45 @@
                                   (south living-room))
 
 	      (library            (east upstairs-bedroom)
-                                  (south back-stairs)))))
+                                  (south back-stairs))))
+  "Map of the rooms.")
 
-(setf upstairs-room (quote (library upstairs-bedroom)))
+(defvar upstairs-room (quote (library upstairs-bedroom)) "List of rooms that are upstairs.")
 
-(setf stairs (quote (front-stairs back-stairs)))
+(defvar stairs (quote (front-stairs back-stairs)) "List of stairs.")
 
-(setf location (quote pantry))
+(defvar location (quote pantry)  "Current location of Robbie.")
+
 
 (defun choices (room)
   "Returns the table of permissible directions Robbie may take."
   (rest (assoc room *rooms*)))
 
+
 (defun look (direction room)
   "Returns where Robbie would end up if he moved in that DIRECTION from that ROOM."
   (second (assoc direction (choices room))))
+
 
 (defun set-robbie-location (place)
   "Moves Robbie to PLACE by setting the variable LOCATION."
   (setf location place))
 
+
 (defun how-many-choices ()
   "Returns the possible places that Robbie can go."
   (length (choices location)))
+
 
 (defun upstairsp (room)
   "Returns T if its input is an upstairs loccation."
   (if (member room upstairs-room) t nil))
 
+
 (defun onstairsp (location)
   "Returns T is if Robbie is on the stairs."
   (if (member location stairs) t nil))
+
 
 (defun where ()
   "Returns Robbie's current location."
@@ -88,6 +91,7 @@
       (format t "Robbie is on the ~A.~&" location)
       (format t "Robbie is ~A in the ~A.~&"
               (if (upstairsp location) (quote upstairs) (quote downstairs)) location)))
+
 
 (defun move (direction)
   "Move Robbie in the given DIRECTION."
