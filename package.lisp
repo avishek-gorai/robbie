@@ -15,12 +15,6 @@
 ;;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-(defpackage #:robbie
-  (:use #:common-lisp)
-  (:export *rooms*
-           choices
-           look
-           where
-           how-many-choices
-           move)
+(defpackage robbie
+  (:use common-lisp)
   (:documentation "Moving Robbie, the robot, around the house."))
